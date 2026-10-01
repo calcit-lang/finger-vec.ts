@@ -1,0 +1,34 @@
+{
+  "name": "@calcit/finger-vec",
+  "version": "0.1.0",
+  "description": "Persistent vector for the Calcit runtime: chunked relaxed B-tree with front and back buffers",
+  "type": "module",
+  "main": "./lib/index.mjs",
+  "types": "./lib/index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.mts",
+      "default": "./lib/index.mjs"
+    }
+  },
+  "files": [
+    "lib/index.mjs",
+    "lib/index.d.mts",
+    "lib/tree.mjs",
+    "lib/tree.d.mts",
+    "README.md"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calcit-lang/finger-vec.ts.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "tsc && node lib/test.mjs",
+    "bench": "tsc && node lib/bench.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
+}

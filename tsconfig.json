@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "outDir": "lib/",
+    "rootDir": "./src/",
+    "strict": true,
+    "moduleResolution": "bundler",
+    "module": "esnext",
+    "target": "es2020",
+    "lib": ["es2020"],
+    "types": [],
+    "declaration": true,
+    "sourceMap": false
+  },
+  "include": ["./src/*.mts"],
+  "exclude": ["lib"]
+}

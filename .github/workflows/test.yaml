@@ -1,0 +1,27 @@
+name: Test
+
+on:
+  pull_request: {}
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm install --no-audit --no-fund
+
+      - run: npx tsc
+
+      - run: node lib/test.mjs
+        name: run tests
+
+      - run: node lib/bench.mjs
+        name: run benchmark
