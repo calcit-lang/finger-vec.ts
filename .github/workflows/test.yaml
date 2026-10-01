@@ -18,7 +18,8 @@ jobs:
 
       - run: npm install --no-audit --no-fund
 
-      - run: npx tsc
+      - run: npm run test:package
+        name: verify packed TypeScript and Node consumer
 
       - run: node lib/test.mjs
         name: run tests

@@ -20,6 +20,9 @@ jobs:
       - run: node lib/test.mjs
         name: run tests
 
+      - run: npm run test:package
+        name: verify packed TypeScript and Node consumer
+
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
