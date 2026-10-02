@@ -65,6 +65,9 @@ Appending repeatedly to one shared small list copies its chunk each time, which 
 
 打包和发布时会自动执行 TypeScript 构建。运行 `npm run test:package` 会检查真实 tarball 的文件列表，并在独立临时项目中验证公开类型与 Node 导入；测试不依赖仓库内的源码或本地模块链接。
 
+发布通过 `.github/workflows/npm-publish.yaml` 使用 npm OIDC trusted publishing，不依赖发布 token。
+npm 的 trusted publisher 配置须指定 `calcit-lang/finger-vec.ts` 和文件名 `npm-publish.yaml`；当前 job 没有 GitHub Environment，该选项留空。保存配置后可通过 Release 或手动运行同一 workflow 发布；2FA 保持启用。
+
 ```bash
 npm install
 npx tsc

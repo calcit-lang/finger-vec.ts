@@ -8,13 +8,18 @@ on:
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
-          registry-url: https://registry.npmjs.org/
+          node-version: 22.23.3
+
+      - run: npm install --global npm@12.2.0
+        name: install OIDC-capable npm CLI
 
       - run: npm install --no-audit --no-fund && npx tsc
 
@@ -24,6 +29,4 @@ jobs:
       - run: npm run test:package
         name: verify packed TypeScript and Node consumer
 
-      - run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH_TOKEN}}
+      - run: npm publish --access public --registry https://registry.npmjs.org/
