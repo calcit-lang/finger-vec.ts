@@ -8,9 +8,14 @@ import { fileURLToPath } from "node:url";
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const consumer = mkdtempSync(join(tmpdir(), "finger-vec-packed-consumer-"));
 try {
-  const [packed] = JSON.parse(execFileSync("npm", ["pack", "--json", "--pack-destination", consumer], {
+  const packResult = JSON.parse(execFileSync("npm", ["pack", "--json", "--pack-destination", consumer], {
     cwd: root, encoding: "utf8",
   }));
+  // npm 12 keys pack results by package name; earlier versions return an array.
+  const packages = Array.isArray(packResult) ? packResult : Object.values(packResult);
+  assert.equal(packages.length, 1, "Expected exactly one packed package");
+  const [packed] = packages;
+  assert.equal(packed.name, "@calcit/finger-vec");
   const files = packed.files.map(({ path }) => path).sort();
   assert.deepEqual(files, [
     "README.md", "lib/index.d.mts", "lib/index.mjs", "lib/tree.d.mts", "lib/tree.mjs", "package.json",

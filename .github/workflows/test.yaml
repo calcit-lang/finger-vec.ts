@@ -14,7 +14,10 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 22.23.3
+
+      - run: npm install --global npm@12.2.0
+        name: match publishing npm CLI
 
       - run: npm install --no-audit --no-fund
 
