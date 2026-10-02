@@ -63,6 +63,8 @@ Appending repeatedly to one shared small list copies its chunk each time, which 
 
 ### Development
 
+打包和发布时会自动执行 TypeScript 构建。运行 `npm run test:package` 会检查真实 tarball 的文件列表，并在独立临时项目中验证公开类型与 Node 导入；测试不依赖仓库内的源码或本地模块链接。
+
 ```bash
 npm install
 npx tsc

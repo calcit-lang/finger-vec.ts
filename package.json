@@ -25,6 +25,8 @@
   },
   "scripts": {
     "build": "tsc",
+    "prepack": "npm run build",
+    "test:package": "node scripts/test-package.mjs",
     "test": "tsc && node lib/test.mjs",
     "bench": "tsc && node lib/bench.mjs"
   },
